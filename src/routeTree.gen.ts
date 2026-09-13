@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GeneticsRouteImport } from './routes/genetics'
+import { Route as LaunchpadRouteImport } from './routes/launchpad'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GeneticsRoute = GeneticsRouteImport.update({
+  id: '/genetics',
+  path: '/genetics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LaunchpadRoute = LaunchpadRouteImport.update({
+  id: '/launchpad',
+  path: '/launchpad',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/genetics': typeof GeneticsRoute
+  '/launchpad': typeof LaunchpadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/genetics': typeof GeneticsRoute
+  '/launchpad': typeof LaunchpadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/genetics': typeof GeneticsRoute
+  '/launchpad': typeof LaunchpadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/genetics' | '/launchpad'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/genetics' | '/launchpad'
+  id: '__root__' | '/' | '/genetics' | '/launchpad'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GeneticsRoute: typeof GeneticsRoute
+  LaunchpadRoute: typeof LaunchpadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +68,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/genetics': {
+      id: '/genetics'
+      path: '/genetics'
+      fullPath: '/genetics'
+      preLoaderRoute: typeof GeneticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/launchpad': {
+      id: '/launchpad'
+      path: '/launchpad'
+      fullPath: '/launchpad'
+      preLoaderRoute: typeof LaunchpadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GeneticsRoute: GeneticsRoute,
+  LaunchpadRoute: LaunchpadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
