@@ -5,5 +5,5 @@
 - [ ] Genetics & DNA lab: 3 tubes, trait sliders/selectors, hybrid creature render + stats/taxonomy/lore (CRISPR, GFP)
 - [ ] Rocket launchpad: semi-realistic arcade physics (fuel/thrust/payload), 3 outcomes, sweet-spot hint gauge + telemetry feedback on retry, supernova sandbox
 - [ ] Volcano station: 2-axis model (gas pressure + silica; viscosity derived), depth dial, pyroclastic/lava-bomb toggles, real eruption comparisons
-- [ ] Particle sandbox: Sand, Stone/Wall, Water, Ice, Steam, Lava, Fire, Oil, Acid, Gunpowder, Metal, Plant, Salt, Erase; v1 reaction rules; brush size, heat/freeze gun, clear, pause, step, 3 presets with explanations
+- [ ] Particle sandbox: grouped palette (Solids: Sand/Stone/Metal/Ice; Liquids: Water/Lava/Oil/Acid; Gases: Steam; Reactives/Organics: Fire/Gunpowder/Plant/Salt; Eraser) with property tooltips; v1 reaction rules; heat & freeze brushes, brush radius, sim speed, play/pause/step, clear; collapsible reaction-rules HUD; presets "Volcano in a Box", "Acid Etch Test", "Oil & Fire Cascade" with commentary
 - [ ] Per-route head metadata, responsive polish, reduced-motion fallback
