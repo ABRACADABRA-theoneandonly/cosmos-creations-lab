@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GeneticsRouteImport } from './routes/genetics'
 import { Route as LaunchpadRouteImport } from './routes/launchpad'
+import { Route as SandboxRouteImport } from './routes/sandbox'
+import { Route as VolcanoRouteImport } from './routes/volcano'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +30,53 @@ const LaunchpadRoute = LaunchpadRouteImport.update({
   path: '/launchpad',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SandboxRoute = SandboxRouteImport.update({
+  id: '/sandbox',
+  path: '/sandbox',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VolcanoRoute = VolcanoRouteImport.update({
+  id: '/volcano',
+  path: '/volcano',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/genetics': typeof GeneticsRoute
   '/launchpad': typeof LaunchpadRoute
+  '/sandbox': typeof SandboxRoute
+  '/volcano': typeof VolcanoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/genetics': typeof GeneticsRoute
   '/launchpad': typeof LaunchpadRoute
+  '/sandbox': typeof SandboxRoute
+  '/volcano': typeof VolcanoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/genetics': typeof GeneticsRoute
   '/launchpad': typeof LaunchpadRoute
+  '/sandbox': typeof SandboxRoute
+  '/volcano': typeof VolcanoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/genetics' | '/launchpad'
+  fullPaths: '/' | '/genetics' | '/launchpad' | '/sandbox' | '/volcano'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/genetics' | '/launchpad'
-  id: '__root__' | '/' | '/genetics' | '/launchpad'
+  to: '/' | '/genetics' | '/launchpad' | '/sandbox' | '/volcano'
+  id: '__root__' | '/' | '/genetics' | '/launchpad' | '/sandbox' | '/volcano'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   GeneticsRoute: typeof GeneticsRoute
   LaunchpadRoute: typeof LaunchpadRoute
+  SandboxRoute: typeof SandboxRoute
+  VolcanoRoute: typeof VolcanoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +102,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LaunchpadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sandbox': {
+      id: '/sandbox'
+      path: '/sandbox'
+      fullPath: '/sandbox'
+      preLoaderRoute: typeof SandboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/volcano': {
+      id: '/volcano'
+      path: '/volcano'
+      fullPath: '/volcano'
+      preLoaderRoute: typeof VolcanoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +123,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   GeneticsRoute: GeneticsRoute,
   LaunchpadRoute: LaunchpadRoute,
+  SandboxRoute: SandboxRoute,
+  VolcanoRoute: VolcanoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
